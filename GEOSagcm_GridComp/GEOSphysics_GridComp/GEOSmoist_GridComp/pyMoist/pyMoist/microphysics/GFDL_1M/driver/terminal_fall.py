@@ -1,13 +1,30 @@
 import dataclasses
 
-from ndsl import Local, LocalState, NDSLRuntime, Quantity, QuantityFactory, StencilFactory
+from ndsl import (
+    Local,
+    LocalState,
+    NDSLRuntime,
+    Quantity,
+    QuantityFactory,
+    StencilFactory,
+)
 from ndsl.constants import I_DIM, J_DIM, K_DIM, K_INTERFACE_DIM
-from ndsl.dsl.gt4py import BACKWARD, FORWARD, PARALLEL, computation, exp, function, interval
+from ndsl.dsl.gt4py import (
+    BACKWARD,
+    FORWARD,
+    PARALLEL,
+    computation,
+    exp,
+    function,
+    interval,
+)
 from ndsl.dsl.typing import Bool, BoolFieldIJ, Float, FloatField, FloatFieldIJ
-from ndsl.stencils import set_IJ_mask_value, set_value, set_value_2D
+from ndsl.stencils import set_boolean_value_2d, set_value, set_value_2d
 
 from pyMoist.microphysics.GFDL_1M.config import GFDL1MConfig
-from pyMoist.microphysics.GFDL_1M.driver.config_constants import GFDL1MDriverConfigDependentConstants
+from pyMoist.microphysics.GFDL_1M.driver.config_constants import (
+    GFDL1MDriverConfigDependentConstants,
+)
 from pyMoist.microphysics.GFDL_1M.driver.constants import constants
 from pyMoist.microphysics.GFDL_1M.driver.stencils import implicit_fall
 
@@ -47,7 +64,9 @@ def check_precip_get_zt(
 
     with computation(FORWARD), interval(1, None):
         if precip_fall == True:  # noqa
-            z_interface_modified = z_interface - dts * (terminal_speed[0, 0, -1] + terminal_speed) / 2.0
+            z_interface_modified = (
+                z_interface - dts * (terminal_speed[0, 0, -1] + terminal_speed) / 2.0
+            )
 
     with computation(FORWARD), interval(-1, None):
         if precip_fall == True:  # noqa
@@ -88,7 +107,15 @@ def update_dmass(
     with computation(PARALLEL), interval(...):
         if precip_fall == True:  # noqa
             if do_sedi_w == True:  # noqa
-                dmass = dp * (1.0 + mixing_ratio_vapor + mixing_ratio_liquid + mixing_ratio_rain + mixing_ratio_ice + mixing_ratio_snow + mixing_ratio_graupel)
+                dmass = dp * (
+                    1.0
+                    + mixing_ratio_vapor
+                    + mixing_ratio_liquid
+                    + mixing_ratio_rain
+                    + mixing_ratio_ice
+                    + mixing_ratio_snow
+                    + mixing_ratio_graupel
+                )
 
 
 def update_w(
@@ -117,7 +144,11 @@ def update_w(
     with computation(FORWARD), interval(1, None):
         if precip_fall == True:  # noqa
             if do_sedi_w:
-                w = (dmass * w - mass[0, 0, -1] * terminal_speed[0, 0, -1] + mass * terminal_speed) / (dmass + mass[0, 0, -1] - mass)
+                w = (
+                    dmass * w
+                    - mass[0, 0, -1] * terminal_speed[0, 0, -1]
+                    + mass * terminal_speed
+                ) / (dmass + mass[0, 0, -1] - mass)
 
 
 def reset(
@@ -585,7 +616,7 @@ class GFDL1MTerminalFall(NDSLRuntime):
         )
 
         self._set_value_IJ = stencil_factory.from_dims_halo(
-            func=set_value_2D,
+            func=set_value_2d,
             compute_dims=[I_DIM, J_DIM, K_DIM],
         )
         self._set_value = stencil_factory.from_dims_halo(
@@ -597,7 +628,7 @@ class GFDL1MTerminalFall(NDSLRuntime):
             compute_dims=[I_DIM, J_DIM, K_INTERFACE_DIM],
         )
         self._set_IJ_mask = stencil_factory.from_dims_halo(
-            func=set_IJ_mask_value,
+            func=set_boolean_value_2d,
             compute_dims=[I_DIM, J_DIM, K_DIM],
         )
 
