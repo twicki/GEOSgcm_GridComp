@@ -2,12 +2,26 @@ from ndsl import NDSLRuntime, QuantityFactory, StencilFactory, ndsl_log
 from ndsl.constants import I_DIM, J_DIM, K_DIM
 
 from pyMoist.convection.GF_2020.config import GF2020Config
-from pyMoist.convection.GF_2020.cumulus_parameterization.air_density import hydrostatic_air_density
+from pyMoist.convection.GF_2020.cumulus_parameterization.air_density import (
+    hydrostatic_air_density,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.buoyancy import get_buoyancy
-from pyMoist.convection.GF_2020.cumulus_parameterization.config import GF2020CumulusParameterizationConfig
-from pyMoist.convection.GF_2020.cumulus_parameterization.constants import FIRST_GUESS_W, MAXENS1, MAXENS2, MAXENS3
-from pyMoist.convection.GF_2020.cumulus_parameterization.convective_tracers import AtmosphericComposition, ColdPoolParameterization
-from pyMoist.convection.GF_2020.cumulus_parameterization.diurnal_cycle import DiurnalCycle
+from pyMoist.convection.GF_2020.cumulus_parameterization.config import (
+    GF2020CumulusParameterizationConfig,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.constants import (
+    FIRST_GUESS_W,
+    MAXENS1,
+    MAXENS2,
+    MAXENS3,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.convective_tracers import (
+    AtmosphericComposition,
+    ColdPoolParameterization,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.diurnal_cycle import (
+    DiurnalCycle,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.downdraft import (
     DowndraftOriginLevel,
     DowndraftWetBlub,
@@ -18,7 +32,12 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.downdraft import (
     downdraft_moisture,
     downdraft_temperature,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.entrainment import compute_lateral_massflux, compute_uc_vc, downdraft_entrainment_profiles, entrainment_rates
+from pyMoist.convection.GF_2020.cumulus_parameterization.entrainment import (
+    compute_lateral_massflux,
+    compute_uc_vc,
+    downdraft_entrainment_profiles,
+    entrainment_rates,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.environment import (
     EnvironmentalSubsidence,
     environment_cloud_levels,
@@ -36,12 +55,26 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.get_levels import (
     get_convective_cloud_base_level,
     set_start_level,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.kinetic_energy_to_heating import kinetic_energy_to_heating
-from pyMoist.convection.GF_2020.cumulus_parameterization.large_scale_forcing import LargeScaleForcing
-from pyMoist.convection.GF_2020.cumulus_parameterization.locals import GF2020CumulusParameterizationLocals
-from pyMoist.convection.GF_2020.cumulus_parameterization.mass_conservation import MassConservation
-from pyMoist.convection.GF_2020.cumulus_parameterization.moist_static_energy import StaticControl, first_guess_moist_static_energy, parcel_moist_static_energy
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
+from pyMoist.convection.GF_2020.cumulus_parameterization.kinetic_energy_to_heating import (
+    kinetic_energy_to_heating,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.large_scale_forcing import (
+    LargeScaleForcing,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.locals import (
+    GF2020CumulusParameterizationLocals,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.mass_conservation import (
+    MassConservation,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.moist_static_energy import (
+    StaticControl,
+    first_guess_moist_static_energy,
+    parcel_moist_static_energy,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import (
+    GF2020PlumeDependentConstants,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.precip import (
     PrecipFactor,
     cloud_dissipation,
@@ -58,13 +91,29 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.prepare_output import (
     prepare_output,
     total_evaporation_flux,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.profiles import C1DProfile, melting_profile
+from pyMoist.convection.GF_2020.cumulus_parameterization.profiles import (
+    C1DProfile,
+    melting_profile,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.setup.setup import Setup
-from pyMoist.convection.GF_2020.cumulus_parameterization.shared_stencils import generic_find_level, updraft_vertical_velocity
-from pyMoist.convection.GF_2020.cumulus_parameterization.smoothing import smooth_tendencies
-from pyMoist.convection.GF_2020.cumulus_parameterization.sounding import GATESounding, Sounding
-from pyMoist.convection.GF_2020.cumulus_parameterization.state import GF2020CumulusParameterizationState
-from pyMoist.convection.GF_2020.cumulus_parameterization.triggers import XieTriggerFunction, convection_trigger
+from pyMoist.convection.GF_2020.cumulus_parameterization.shared_stencils import (
+    generic_find_level,
+    updraft_vertical_velocity,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.smoothing import (
+    smooth_tendencies,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.sounding import (
+    GATESounding,
+    Sounding,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.state import (
+    GF2020CumulusParameterizationState,
+)
+from pyMoist.convection.GF_2020.cumulus_parameterization.triggers import (
+    XieTriggerFunction,
+    convection_trigger,
+)
 from pyMoist.convection.GF_2020.cumulus_parameterization.updraft import (
     UpdateWorkfunctionAndPrecipitationEnsemble,
     UpdraftCIN,
@@ -74,7 +123,9 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.updraft import (
     updraft_moisture,
     updraft_temperature,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.vertical_discretization import VerticalDiscretization
+from pyMoist.convection.GF_2020.cumulus_parameterization.vertical_discretization import (
+    VerticalDiscretization,
+)
 from pyMoist.convection_tracers import ConvectionTracers
 from pyMoist.saturation_tables.tables.main import SaturationVaporPressureTable
 
@@ -148,15 +199,21 @@ class GF2020CumulusParameterization(NDSLRuntime):
         self._environment_conditions = stencil_factory.from_dims_halo(
             func=environment_conditions,
             compute_dims=[I_DIM, J_DIM, K_DIM],
-            externals={"SATURATION_CALCULATION_CHOICE": cumulus_parameterization_config.SATURATION_CALCULATION_CHOICE},
+            externals={
+                "SATURATION_CALCULATION_CHOICE": cumulus_parameterization_config.SATURATION_CALCULATION_CHOICE
+            },
         )
 
-        self._sounding = Sounding(cumulus_parameterization_config=cumulus_parameterization_config)
+        self._sounding = Sounding(
+            cumulus_parameterization_config=cumulus_parameterization_config
+        )
 
         self._environment_cloud_levels = stencil_factory.from_dims_halo(
             func=environment_cloud_levels,
             compute_dims=[I_DIM, J_DIM, K_DIM],
-            externals={"CLOUD_LEVEL_GRID": cumulus_parameterization_config.CLOUD_LEVEL_GRID},
+            externals={
+                "CLOUD_LEVEL_GRID": cumulus_parameterization_config.CLOUD_LEVEL_GRID
+            },
         )
 
         self._hydrostatic_air_density = stencil_factory.from_dims_halo(
@@ -271,7 +328,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
         self._compute_uc_vc = stencil_factory.from_dims_halo(
             func=compute_uc_vc,
             compute_dims=[I_DIM, J_DIM, K_DIM],
-            externals={"BOUNDARY_CONDITION_METHOD": cumulus_parameterization_config.BOUNDARY_CONDITION_METHOD},
+            externals={
+                "BOUNDARY_CONDITION_METHOD": cumulus_parameterization_config.BOUNDARY_CONDITION_METHOD
+            },
         )
 
         self._first_guess_moist_static_energy = stencil_factory.from_dims_halo(
@@ -345,14 +404,18 @@ class GF2020CumulusParameterization(NDSLRuntime):
             compute_dims=[I_DIM, J_DIM, K_DIM],
         )
 
-        self._downdraft_wet_bulb = DowndraftWetBlub(cumulus_parameterization_config=cumulus_parameterization_config)
+        self._downdraft_wet_bulb = DowndraftWetBlub(
+            cumulus_parameterization_config=cumulus_parameterization_config
+        )
 
-        self._downdraft_moist_static_energy_and_buoyancy = stencil_factory.from_dims_halo(
-            func=downdraft_moist_static_energy_and_buoyancy,
-            compute_dims=[I_DIM, J_DIM, K_DIM],
-            externals={
-                "USE_WETBULB": cumulus_parameterization_config.USE_WETBULB,
-            },
+        self._downdraft_moist_static_energy_and_buoyancy = (
+            stencil_factory.from_dims_halo(
+                func=downdraft_moist_static_energy_and_buoyancy,
+                compute_dims=[I_DIM, J_DIM, K_DIM],
+                externals={
+                    "USE_WETBULB": cumulus_parameterization_config.USE_WETBULB,
+                },
+            )
         )
 
         self._downdraft_moisture = stencil_factory.from_dims_halo(
@@ -428,7 +491,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
         self._smooth_tendencies = stencil_factory.from_dims_halo(
             func=smooth_tendencies,
             compute_dims=[I_DIM, J_DIM, K_DIM],
-            externals={"USE_SMOOTH_TENDENCIES": cumulus_parameterization_config.USE_SMOOTH_TENDENCIES},
+            externals={
+                "USE_SMOOTH_TENDENCIES": cumulus_parameterization_config.USE_SMOOTH_TENDENCIES
+            },
         )
 
         self._modify_environment_profiles = stencil_factory.from_dims_halo(
@@ -444,10 +509,12 @@ class GF2020CumulusParameterization(NDSLRuntime):
             cumulus_parameterization_config=cumulus_parameterization_config,
         )
 
-        self._update_workfunction_and_precipitation_ensemble = UpdateWorkfunctionAndPrecipitationEnsemble(
-            stencil_factory=stencil_factory,
-            config=config,
-            cumulus_parameterization_config=cumulus_parameterization_config,
+        self._update_workfunction_and_precipitation_ensemble = (
+            UpdateWorkfunctionAndPrecipitationEnsemble(
+                stencil_factory=stencil_factory,
+                config=config,
+                cumulus_parameterization_config=cumulus_parameterization_config,
+            )
         )
 
         self._large_scale_forcing = LargeScaleForcing(
@@ -497,7 +564,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
             compute_dims=[I_DIM, J_DIM, K_DIM],
         )
 
-        self._lightning_flash_density = LightningFlashDensity(cumulus_parameterization_config=cumulus_parameterization_config)
+        self._lightning_flash_density = LightningFlashDensity(
+            cumulus_parameterization_config=cumulus_parameterization_config
+        )
 
         self._deep_precipitation_output = stencil_factory.from_dims_halo(
             func=deep_precipitation_output,
@@ -514,11 +583,13 @@ class GF2020CumulusParameterization(NDSLRuntime):
             compute_dims=[I_DIM, J_DIM, K_DIM],
         )
 
-        self._output_workfunctions_and_precip_concentrations = OutputWorkfunctionsAndPrecipConcentrations(
-            stencil_factory=stencil_factory,
-            quantity_factory=quantity_factory,
-            config=config,
-            cumulus_parameterization_config=cumulus_parameterization_config,
+        self._output_workfunctions_and_precip_concentrations = (
+            OutputWorkfunctionsAndPrecipConcentrations(
+                stencil_factory=stencil_factory,
+                quantity_factory=quantity_factory,
+                config=config,
+                cumulus_parameterization_config=cumulus_parameterization_config,
+            )
         )
 
         self._atmospheric_composition = AtmosphericComposition(
@@ -528,7 +599,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
             cumulus_parameterization_config=cumulus_parameterization_config,
         )
 
-        self._gate_sounding = GATESounding(cumulus_parameterization_config=cumulus_parameterization_config)
+        self._gate_sounding = GATESounding(
+            cumulus_parameterization_config=cumulus_parameterization_config
+        )
 
     def __call__(
         self,
@@ -708,7 +781,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
                 self._environment_cloud_levels(
                     p=state.input_output.p_forced,
                     p_surface=state.input_output.p_surface,
-                    p_cloud_levels=state.output.p_cloud_levels_forced.data[:, :, :, self.plume_dependent_constants.PLUME_INDEX],
+                    p_cloud_levels=state.output.p_cloud_levels_forced[
+                        :, :, :, self.plume_dependent_constants.PLUME_INDEX
+                    ],
                     topography_height_no_negative=state.input_output.topography_height_no_negative,
                     geopotential_height=state.input_output.geopotential_height_forced,
                     geopotential_height_cloud_levels=self.locals.geopotential_height_cloud_levels_forced,
@@ -952,7 +1027,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
                 self._generic_find_level(
                     array=self.locals.environment_saturation_moist_static_energy_cloud_levels_forced,
                     start_index=state.output.updraft_lfc_level,
-                    end_index=state.output.kstabm.data[:, :, self.plume_dependent_constants.PLUME_INDEX],
+                    end_index=state.output.kstabm[
+                        :, :, self.plume_dependent_constants.PLUME_INDEX
+                    ],
                     out_index=state.output.kstabi,
                     error_code=state.output.error_code,
                     plume=self.plume_dependent_constants.PLUME_INDEX,
@@ -1345,7 +1422,10 @@ class GF2020CumulusParameterization(NDSLRuntime):
                 # wet bulb temperature and moisture at downdraft origin level
                 # NOTE this section does not run in the test case, and has not been implemented.
                 # NOTE an error will stop execution during initalization if this would be called
-                if self.cumulus_parameterization_config.USE_WETBULB and self.plume_dependent_constants.PLUME_INDEX != 0:
+                if (
+                    self.cumulus_parameterization_config.USE_WETBULB
+                    and self.plume_dependent_constants.PLUME_INDEX != 0
+                ):
                     raise NotImplementedError(
                         "wet bulb functionality is not implemented. You should not be here,"
                         "there are multiple layers of errors that should have caught you first."
@@ -1524,7 +1604,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
 
                 # Trigger function based on Xie et al 2019
                 # NOTE not implemented, does not run with test config
-                self._Xie_trigger_function(plume_dependent_constants=self.plume_dependent_constants)
+                self._Xie_trigger_function(
+                    plume_dependent_constants=self.plume_dependent_constants
+                )
 
                 # determine downdraft strength in terms of windshear
                 # NOTE test GF2020_CumulusParameterization_DowndraftWindShear_{plume}:
@@ -1710,7 +1792,9 @@ class GF2020CumulusParameterization(NDSLRuntime):
                 self._environment_cloud_levels(
                     p=state.input_output.p_forced,
                     p_surface=state.input_output.p_surface,
-                    p_cloud_levels=state.output.p_cloud_levels_forced.data[:, :, :, self.plume_dependent_constants.PLUME_INDEX],
+                    p_cloud_levels=state.output.p_cloud_levels_forced[
+                        :, :, :, self.plume_dependent_constants.PLUME_INDEX
+                    ],
                     topography_height_no_negative=state.input_output.topography_height_no_negative,
                     geopotential_height=self.locals.geopotential_height_modified,
                     geopotential_height_cloud_levels=self.locals.geopotential_height_cloud_levels_modified,
