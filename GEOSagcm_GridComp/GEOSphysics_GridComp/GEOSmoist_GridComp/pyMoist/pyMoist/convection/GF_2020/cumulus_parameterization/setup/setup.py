@@ -11,10 +11,8 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.config import (
     MidSpecificConstants,
     ShallowSpecificConstants,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.constants import MAXENS1, MAXENS2, MAXENS3, PRESSURE_GRADIENT_CONSTANT
+from pyMoist.convection.GF_2020.cumulus_parameterization.constants import MAXENS1, MAXENS2, MAXENS3
 from pyMoist.convection.GF_2020.cumulus_parameterization.field_types import FloatField_Plume, FloatFieldIJ_Ensemble, FloatFieldIJ_Plume, IntFieldIJ_Plume
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
-from pyMoist.convection.GF_2020.cumulus_parameterization.setup.set_constants import set_constants
 from pyMoist.shared.atmos_recipes import sigma
 
 

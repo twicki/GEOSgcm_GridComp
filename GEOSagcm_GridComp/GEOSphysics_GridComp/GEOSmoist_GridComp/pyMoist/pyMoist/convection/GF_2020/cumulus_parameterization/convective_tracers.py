@@ -20,7 +20,6 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.field_types import (
     FloatFieldIJ_Plume,
     IntFieldIJ_Plume,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
 from pyMoist.convection.GF_2020.cumulus_parameterization.shared_functions import get_cloud_boundary_conditions
 from pyMoist.convection.GF_2020.cumulus_parameterization.shared_stencils import tridiag
 from pyMoist.convection_tracers import ConvectionTracers

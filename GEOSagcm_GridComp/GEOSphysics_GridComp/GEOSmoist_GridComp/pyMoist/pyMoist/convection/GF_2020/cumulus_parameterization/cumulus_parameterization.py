@@ -1,6 +1,5 @@
-import dace
-from ndsl import NDSLRuntime, QuantityFactory, StencilFactory, ndsl_log
-from ndsl.constants import I_DIM, J_DIM, K_DIM, Float
+from ndsl import NDSLRuntime, QuantityFactory, StencilFactory
+from ndsl.constants import I_DIM, J_DIM, K_DIM
 from ndsl.dsl.typing import Int
 
 from pyMoist.convection.GF_2020.config import GF2020Config
@@ -12,7 +11,7 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.config import (
     MidSpecificConstants,
     ShallowSpecificConstants,
 )
-from pyMoist.convection.GF_2020.cumulus_parameterization.constants import FIRST_GUESS_W, MAXENS1, MAXENS2, MAXENS3, PRESSURE_GRADIENT_CONSTANT, Plumes
+from pyMoist.convection.GF_2020.cumulus_parameterization.constants import FIRST_GUESS_W, MAXENS1, MAXENS2, MAXENS3
 from pyMoist.convection.GF_2020.cumulus_parameterization.convective_tracers import AtmosphericComposition, ColdPoolParameterization
 from pyMoist.convection.GF_2020.cumulus_parameterization.diurnal_cycle import DiurnalCycle
 from pyMoist.convection.GF_2020.cumulus_parameterization.downdraft import (
@@ -48,7 +47,6 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.large_scale_forcing imp
 from pyMoist.convection.GF_2020.cumulus_parameterization.locals import GF2020CumulusParameterizationLocals
 from pyMoist.convection.GF_2020.cumulus_parameterization.mass_conservation import MassConservation
 from pyMoist.convection.GF_2020.cumulus_parameterization.moist_static_energy import StaticControl, first_guess_moist_static_energy, parcel_moist_static_energy
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
 from pyMoist.convection.GF_2020.cumulus_parameterization.precip import (
     PrecipFactor,
     cloud_dissipation,

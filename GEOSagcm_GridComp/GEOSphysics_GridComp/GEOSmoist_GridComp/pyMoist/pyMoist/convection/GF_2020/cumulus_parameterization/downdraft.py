@@ -14,7 +14,6 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.config import (
     ShallowSpecificConstants,
 )
 from pyMoist.convection.GF_2020.cumulus_parameterization.field_types import FloatField_Plume, FloatFieldIJ_ensemble_2, FloatFieldIJ_Plume, IntFieldIJ_Plume
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
 from pyMoist.convection.GF_2020.cumulus_parameterization.shared_stencils import generic_find_level
 
 

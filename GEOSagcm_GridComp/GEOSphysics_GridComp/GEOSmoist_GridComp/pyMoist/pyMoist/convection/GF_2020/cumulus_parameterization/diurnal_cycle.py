@@ -1,4 +1,3 @@
-import dace
 from ndsl import Local, NDSLRuntime, Quantity, QuantityFactory, StencilFactory
 from ndsl.constants import I_DIM, J_DIM, K_DIM
 from ndsl.dsl.gt4py import FORWARD, K, computation, interval, sqrt
@@ -13,7 +12,6 @@ from pyMoist.convection.GF_2020.cumulus_parameterization.config import (
     ShallowSpecificConstants,
 )
 from pyMoist.convection.GF_2020.cumulus_parameterization.field_types import IntFieldIJ_Plume
-from pyMoist.convection.GF_2020.cumulus_parameterization.plume_dependent_constants import GF2020PlumeDependentConstants
 from pyMoist.shared.atmos_recipes import sigma
 
 
